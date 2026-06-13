@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AurX AI - Déconnecté</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
   
     * {
     margin: 0;
@@ -16,7 +16,7 @@
   body {
     background: #000;
     color: #fff;
-    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     overflow: hidden;
     height: 100vh;
     display: flex;
@@ -25,26 +25,77 @@
     justify-content: center;
   }
 
-  /* GRID STABLE */
-  body::before {
-    content: '';
+  /* AURORA BACKGROUND */
+  .aurora {
     position: absolute;
     inset: 0;
-    background-image: 
-      linear-gradient(rgba(10,132,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(10,132,255,0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
     z-index: 0;
-    animation: gridMove 15s linear infinite;
-    will-change: transform;
+    overflow: hidden;
   }
 
-  @keyframes gridMove {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(50px, 50px); }
+  .aurora::before,
+  .aurora::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.3;
+    animation: auroraMove 20s infinite ease-in-out;
   }
 
-  /* BULLES STABLES */
+  .aurora::before {
+    background: radial-gradient(circle, #0A84FF, transparent 70%);
+    top: -200px;
+    left: -100px;
+  }
+
+  .aurora::after {
+    background: radial-gradient(circle, #BF5AF2, transparent 70%);
+    bottom: -200px;
+    right: -100px;
+    animation-delay: -10s;
+  }
+
+  @keyframes auroraMove {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(100px, -50px) scale(1.1); }
+    66% { transform: translate(-80px, 60px) scale(0.9); }
+  }
+
+  /* PARTICULES */
+  .particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    animation: drift 25s infinite linear;
+  }
+
+  @keyframes drift {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+  }
+
+  .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+  .particle:nth-child(2) { left: 25%; animation-delay: -3s; }
+  .particle:nth-child(3) { left: 40%; animation-delay: -6s; }
+  .particle:nth-child(4) { left: 55%; animation-delay: -9s; }
+  .particle:nth-child(5) { left: 70%; animation-delay: -12s; }
+  .particle:nth-child(6) { left: 85%; animation-delay: -15s; }
+
+  /* BULLES GLASS */
   .bubbles {
     position: absolute;
     inset: 0;
@@ -54,63 +105,40 @@
 
   .bubble {
     position: absolute;
-    border-radius: 50%;
+    border-radius: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 600;
     color: #fff;
     text-align: center;
-    padding: 12px;
-    animation: floatStable 35s infinite ease-in-out, glowStable 6s infinite ease-in-out;
-    opacity: 0.85;
-    backdrop-filter: blur(20px);
-    border: 2px solid rgba(255,255,255,0.2);
-    text-transform: uppercase;
+    padding: 16px;
+    animation: floatGlass 30s infinite ease-in-out;
+    opacity: 0.7;
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(40px);
+    border: 1px solid rgba(255,255,255,0.1);
     letter-spacing: 0.5px;
-    transition: opacity 0.8s ease;
+    transition: opacity 1s ease;
     will-change: transform;
   }
 
-  @keyframes floatStable {
+  @keyframes floatGlass {
     0%, 100% { 
-      transform: translate(0, 0) scale(1); 
+      transform: translate(0, 0) rotate(0deg); 
     }
     50% { 
-      transform: translate(90px, -70px) scale(1.05); 
+      transform: translate(60px, -50px) rotate(5deg); 
     }
   }
 
-  @keyframes glowStable {
-    0%, 100% { 
-      background: radial-gradient(circle at 30% 30%, rgba(10,132,255,0.4), rgba(10,132,255,0.1));
-      box-shadow: 0 0 50px rgba(10,132,255,0.5), 
-                  0 0 100px rgba(10,132,255,0.2),
-                  inset 0 0 25px rgba(255,255,255,0.1);
-    }
-    33% { 
-      background: radial-gradient(circle at 30% 30%, rgba(191,90,242,0.4), rgba(191,90,242,0.1));
-      box-shadow: 0 0 50px rgba(191,90,242,0.5), 
-                  0 0 100px rgba(191,90,242,0.2),
-                  inset 0 0 25px rgba(255,255,255,0.1);
-    }
-    66% { 
-      background: radial-gradient(circle at 30% 30%, rgba(48,209,88,0.4), rgba(48,209,88,0.1));
-      box-shadow: 0 0 50px rgba(48,209,88,0.5), 
-                  0 0 100px rgba(48,209,88,0.2),
-                  inset 0 0 25px rgba(255,255,255,0.1);
-    }
-  }
-
-  .bubble:nth-child(1) { width: 135px; height: 135px; left: 10%; top: 20%; animation-delay: 0s, 0s; }
-  .bubble:nth-child(2) { width: 98px; height: 98px; left: 72%; top: 15%; animation-delay: -5s, -1s; }
-  .bubble:nth-child(3) { width: 118px; height: 118px; left: 52%; top: 62%; animation-delay: -10s, -2s; }
-  .bubble:nth-child(4) { width: 88px; height: 88px; left: 20%; top: 70%; animation-delay: -15s, -3s; }
-  .bubble:nth-child(5) { width: 108px; height: 108px; left: 82%; top: 50%; animation-delay: -20s, -4s; }
-  .bubble:nth-child(6) { width: 102px; height: 102px; left: 42%; top: 30%; animation-delay: -25s, -5s; }
-  .bubble:nth-child(7) { width: 92px; height: 92px; left: 67%; top: 75%; animation-delay: -8s, -1.5s; }
-  .bubble:nth-child(8) { width: 82px; height: 82px; left: 28%; top: 45%; animation-delay: -12s, -2.5s; }
+  .bubble:nth-child(1) { width: 120px; height: 60px; left: 15%; top: 25%; animation-delay: 0s; }
+  .bubble:nth-child(2) { width: 90px; height: 50px; left: 75%; top: 20%; animation-delay: -5s; }
+  .bubble:nth-child(3) { width: 110px; height: 55px; left: 55%; top: 65%; animation-delay: -10s; }
+  .bubble:nth-child(4) { width: 85px; height: 45px; left: 22%; top: 68%; animation-delay: -15s; }
+  .bubble:nth-child(5) { width: 100px; height: 52px; left: 78%; top: 50%; animation-delay: -20s; }
+  .bubble:nth-child(6) { width: 95px; height: 48px; left: 45%; top: 32%; animation-delay: -25s; }
 
   /* CONTENU CENTRAL */
   .content {
@@ -118,115 +146,131 @@
     z-index: 1;
     text-align: center;
     padding: 40px 20px;
-    max-width: 650px;
+    max-width: 600px;
+  }
+
+  .logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    background: linear-gradient(135deg, #0A84FF, #BF5AF2);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: 700;
+    box-shadow: 0 0 60px rgba(10,132,255,0.4);
+    animation: logoFloat 4s ease-in-out infinite;
+  }
+
+  @keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
 
   h1 {
-    font-size: 64px;
-    font-weight: 700;
+    font-size: 52px;
+    font-weight: 600;
     margin-bottom: 12px;
-    letter-spacing: -3px;
-    background: linear-gradient(135deg, #0A84FF 0%, #BF5AF2 50%, #30D158 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 30px rgba(10,132,255,0.4));
+    letter-spacing: -1.5px;
   }
 
   .subtitle {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 60px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    font-size: 15px;
+    color: #888;
+    margin-bottom: 50px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
   }
 
-  /* BOUTONS STABLES */
+  /* BOUTONS */
   .btn-group {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
     width: 100%;
-    max-width: 360px;
+    max-width: 340px;
     margin: 0 auto;
   }
 
   .btn {
     width: 100%;
-    padding: 20px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 16px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 700;
+    padding: 18px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    backdrop-filter: blur(20px);
-    position: relative;
-    overflow: hidden;
+    gap: 10px;
   }
 
-  .btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent, rgba(255,255,255,0.15), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.5s;
+  /* BOUTON GOOGLE BLANC */
+  .btn-google {
+    background: #fff;
+    border: none;
+    color: #000;
+    box-shadow: 0 8px 30px rgba(255,255,255,0.15);
   }
 
-  .btn:hover::before {
-    transform: translateX(100%);
-  }
-
-  .btn:hover {
+  .btn-google:hover {
     transform: translateY(-2px);
-    border-color: rgba(10,132,255,0.6);
-    box-shadow: 0 8px 40px rgba(10,132,255,0.4);
+    box-shadow: 0 12px 40px rgba(255,255,255,0.25);
   }
 
-  .btn:active {
-    transform: scale(0.97);
+  .btn-google:active {
+    transform: scale(0.98);
+    background: #f0f0f0;
   }
 
+  /* BOUTON RETOUR GLASS */
   .btn-back {
-    background: linear-gradient(135deg, rgba(10,132,255,0.25), rgba(191,90,242,0.25));
-    border: 1px solid rgba(10,132,255,0.5);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
     color: #fff;
+    backdrop-filter: blur(20px);
   }
 
   .btn-back:hover {
-    border-color: rgba(10,132,255,0.9);
-    box-shadow: 0 8px 40px rgba(10,132,255,0.5);
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
   }
 
   .btn-back:active {
-    background: linear-gradient(135deg, rgba(10,132,255,0.4), rgba(191,90,242,0.4));
+    transform: scale(0.98);
   }
 
   .google-icon {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
   }
 
   @media (max-width: 768px) {
-    h1 { font-size: 44px; }
+    h1 { font-size: 42px; }
     .subtitle { font-size: 14px; }
-    .bubble { font-size: 9px; padding: 10px; }
+    .bubble { font-size: 9px; padding: 12px; }
   }
 </style>
 </head>
 <body>
 
+<div class="aurora"></div>
+
+<div class="particles">
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+</div>
+
 <div class="bubbles">
-  <div class="bubble"></div>
-  <div class="bubble"></div>
   <div class="bubble"></div>
   <div class="bubble"></div>
   <div class="bubble"></div>
@@ -236,18 +280,19 @@
 </div>
 
 <div class="content">
+  <div class="logo">AX</div>
   <h1>AurX AI</h1>
-  <p class="subtitle">Déconnecté</p>
+  <p class="subtitle">Vous êtes déconnecté</p>
   
   <div class="btn-group">
-    <button class="btn" id="loginBtn">
+    <button class="btn btn-google" id="loginBtn">
       <svg class="google-icon" viewBox="0 0 18 18">
         <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
         <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z"/>
         <path fill="#FBBC05" d="M3.964 10.712c-.18-.54-.282-1.117-.282-1.71 0-.593.102-1.17.282-1.71V4.96H.957C.347 6.175 0 7.55 0 9c0 1.45.347 2.825.957 4.04l3.007-2.328z"/>
         <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.96L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"/>
       </svg>
-      Reconnecter avec Google
+      Continuer avec Google
     </button>
     <button class="btn btn-back" id="backBtn">Retour à AurX</button>
   </div>
@@ -265,7 +310,13 @@
     'VISION', 'VOICE', 'CHAT', 'GEN AI', 'LLM',
     'FIRMINX', 'RDC', 'KINSHASA', 'AFRICA', 'NEXT',
     'CLOUD', 'EDGE', 'API', 'SECURE', 'FAST',
-    'LEARN', 'CREATE', 'THINK', 'SOLVE', 'SHIP'
+    'LEARN', 'CREATE', 'THINK', 'SOLVE', 'SHIP',
+    'TYPESCRIPT', 'DOCKER', 'LINUX', 'GIT', 'VSCODE',
+    'TENSORFLOW', 'PYTORCH', 'OPENCV', 'CUDA', 'GPU',
+    'BLOCKCHAIN', 'WEB3', 'CRYPTO', 'TOKEN', 'SMART',
+    'SERVERLESS', 'K8S', 'DEVOPS', 'CI/CD', 'AGILE',
+    'SAAS', 'API', 'REST', 'GRAPHQL', 'SOCKET',
+    'MONGODB', 'POSTGRES', 'REDIS', 'FIREBASE', 'SUPABASE'
   ];
 
   const bubbles = document.querySelectorAll('.bubble');
@@ -274,19 +325,16 @@
     bubbles.forEach(bubble => {
       bubble.style.opacity = '0';
       setTimeout(() => {
-        const randomWord = words[Math.floor(Math.random() * words.length)];
-        bubble.innerHTML = randomWord.replace(' ', '<br>');
-        bubble.style.opacity = '0.85';
-      }, 400);
+        bubble.textContent = words[Math.floor(Math.random() * words.length)];
+        bubble.style.opacity = '0.7';
+      }, 500);
     });
   }
 
   bubbles.forEach(bubble => {
-    const randomWord = words[Math.floor(Math.random() * words.length)];
-    bubble.innerHTML = randomWord.replace(' ', '<br>');
+    bubble.textContent = words[Math.floor(Math.random() * words.length)];
   });
 
-  // STABLE : 4 secondes
   setInterval(changeWords, 4000);
 
   document.getElementById('loginBtn').addEventListener('click', () => {
