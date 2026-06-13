@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AurX AI - Déconnecté</title>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #000;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* BULLES ANIMÉES */
+  .bubbles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+    padding: 10px;
+    animation: float 20s infinite ease-in-out, colorShift 8s infinite ease-in-out;
+    opacity: 0.7;
+    backdrop-filter: blur(10px);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(100px, -80px) scale(1.1); }
+    50% { transform: translate(-80px, 100px) scale(0.9); }
+    75% { transform: translate(120px, 60px) scale(1.05); }
+  }
+
+  @keyframes colorShift {
+    0%, 100% { background: #0A84FF; }
+    20% { background: #30D158; }
+    40% { background: #FF9F0A; }
+    60% { background: #BF5AF2; }
+    80% { background: #FF375F; }
+  }
+
+  .bubble:nth-child(1) { width: 120px; height: 120px; left: 10%; top: 20%; animation-delay: 0s, 0s; }
+  .bubble:nth-child(2) { width: 90px; height: 90px; left: 70%; top: 15%; animation-delay: -3s, -1s; }
+  .bubble:nth-child(3) { width: 110px; height: 110px; left: 50%; top: 60%; animation-delay: -6s, -2s; }
+  .bubble:nth-child(4) { width: 80px; height: 80px; left: 20%; top: 70%; animation-delay: -9s, -3s; }
+  .bubble:nth-child(5) { width: 100px; height: 100px; left: 80%; top: 50%; animation-delay: -12s, -4s; }
+  .bubble:nth-child(6) { width: 95px; height: 95px; left: 40%; top: 30%; animation-delay: -15s, -5s; }
+  .bubble:nth-child(7) { width: 85px; height: 85px; left: 65%; top: 75%; animation-delay: -18s, -6s; }
+
+  /* CONTENU CENTRAL */
+  .content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 40px 20px;
+    max-width: 600px;
+  }
+
+  h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    color: #888;
+    margin-bottom: 50px;
+  }
+
+  /* BOUTONS */
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 16px;
+    background: #fff;
+    border: none;
+    border-radius: 12px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .btn:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+  }
+
+  .btn-back {
+    background: transparent;
+    border: 1px solid #333;
+    color: #fff;
+  }
+
+  .btn-back:active {
+    background: #1a1a1a;
+  }
+
+  .google-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 36px; }
+    .subtitle { font-size: 16px; }
+    .bubble { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bubbles">
+  <div class="bubble">AurX<br>Assistant</div>
+  <div class="bubble">Apprendre</div>
+  <div class="bubble">Coder</div>
+  <div class="bubble">Créer</div>
+  <div class="bubble">Préparer<br>le futur</div>
+  <div class="bubble">Analyser</div>
+  <div class="bubble">Innover</div>
+</div>
+
+<div class="content">
+  <h1>AurX AI</h1>
+  <p class="subtitle">Vous avez été déconnecté</p>
+  
+  <div class="btn-group">
+    <button class="btn" id="loginBtn">
+      <svg class="google-icon" viewBox="0 0 18 18">
+        <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
+        <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z"/>
+        <path fill="#FBBC05" d="M3.964 10.712c-.18-.54-.282-1.117-.282-1.71 0-.593.102-1.17.282-1.71V4.96H.957C.347 6.175 0 7.55 0 9c0 1.45.347 2.825.957 4.04l3.007-2.328z"/>
+        <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.96L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"/>
+      </svg>
+      Se reconnecter avec Google
+    </button>
+    <button class="btn btn-back" id="backBtn">Fermer la page</button>
+  </div>
+</div>
+
+<script>
+  const AUTH_URL = 'https://aur-x-backend.vercel.app/api/auth/google';
+
+  document.getElementById('loginBtn').addEventListener('click', () => {
+    window.location.href = AUTH_URL;
+  });
+
+  document.getElementById('backBtn').addEventListener('click', () => {
+    window.close();
+  });
+</script>
+
+</body>
+</html>
