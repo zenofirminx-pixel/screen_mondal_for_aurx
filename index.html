@@ -14,7 +14,7 @@
   body {
     background: #000;
     color: #fff;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
     overflow: hidden;
     height: 100vh;
     display: flex;
@@ -23,7 +23,7 @@
     justify-content: center;
   }
 
-  /* BULLES ANIMÉES */
+  /* BULLES ANIMÉES LENTES - STYLE PUB TV */
   .bubbles {
     position: absolute;
     inset: 0;
@@ -38,37 +38,62 @@
     align-items: center;
     justify-content: center;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     color: #000;
     text-align: center;
-    padding: 10px;
-    animation: float 20s infinite ease-in-out, colorShift 8s infinite ease-in-out;
-    opacity: 0.7;
-    backdrop-filter: blur(10px);
+    padding: 12px;
+    animation: floatSlow 60s infinite ease-in-out, colorPulse 12s infinite ease-in-out;
+    opacity: 0.8;
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5), 
+                inset 0 1px 0 rgba(255,255,255,0.25);
+    transition: opacity 1.2s ease;
   }
 
-  @keyframes float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    25% { transform: translate(100px, -80px) scale(1.1); }
-    50% { transform: translate(-80px, 100px) scale(0.9); }
-    75% { transform: translate(120px, 60px) scale(1.05); }
+  @keyframes floatSlow {
+    0%, 100% { 
+      transform: translate(0, 0) scale(1); 
+    }
+    33% { 
+      transform: translate(80px, -60px) scale(1.05); 
+    }
+    66% { 
+      transform: translate(-60px, 70px) scale(0.95); 
+    }
   }
 
-  @keyframes colorShift {
-    0%, 100% { background: #0A84FF; }
-    20% { background: #30D158; }
-    40% { background: #FF9F0A; }
-    60% { background: #BF5AF2; }
-    80% { background: #FF375F; }
+  @keyframes colorPulse {
+    0%, 100% { 
+      background: linear-gradient(135deg, #0A84FF, #5AC8FA);
+      box-shadow: 0 0 50px rgba(10,132,255,0.5), 0 8px 32px rgba(0,0,0,0.5);
+    }
+    20% { 
+      background: linear-gradient(135deg, #30D158, #32D74B);
+      box-shadow: 0 0 50px rgba(48,209,88,0.5), 0 8px 32px rgba(0,0,0,0.5);
+    }
+    40% { 
+      background: linear-gradient(135deg, #FF9F0A, #FFD60A);
+      box-shadow: 0 0 50px rgba(255,159,10,0.5), 0 8px 32px rgba(0,0,0,0.5);
+    }
+    60% { 
+      background: linear-gradient(135deg, #BF5AF2, #DA8FFF);
+      box-shadow: 0 0 50px rgba(191,90,242,0.5), 0 8px 32px rgba(0,0,0,0.5);
+    }
+    80% { 
+      background: linear-gradient(135deg, #FF375F, #FF6482);
+      box-shadow: 0 0 50px rgba(255,55,95,0.5), 0 8px 32px rgba(0,0,0,0.5);
+    }
   }
 
-  .bubble:nth-child(1) { width: 120px; height: 120px; left: 10%; top: 20%; animation-delay: 0s, 0s; }
-  .bubble:nth-child(2) { width: 90px; height: 90px; left: 70%; top: 15%; animation-delay: -3s, -1s; }
-  .bubble:nth-child(3) { width: 110px; height: 110px; left: 50%; top: 60%; animation-delay: -6s, -2s; }
-  .bubble:nth-child(4) { width: 80px; height: 80px; left: 20%; top: 70%; animation-delay: -9s, -3s; }
-  .bubble:nth-child(5) { width: 100px; height: 100px; left: 80%; top: 50%; animation-delay: -12s, -4s; }
-  .bubble:nth-child(6) { width: 95px; height: 95px; left: 40%; top: 30%; animation-delay: -15s, -5s; }
-  .bubble:nth-child(7) { width: 85px; height: 85px; left: 65%; top: 75%; animation-delay: -18s, -6s; }
+  .bubble:nth-child(1) { width: 130px; height: 130px; left: 10%; top: 20%; animation-delay: 0s, 0s; }
+  .bubble:nth-child(2) { width: 95px; height: 95px; left: 70%; top: 15%; animation-delay: -10s, -2s; }
+  .bubble:nth-child(3) { width: 115px; height: 115px; left: 50%; top: 60%; animation-delay: -20s, -4s; }
+  .bubble:nth-child(4) { width: 85px; height: 85px; left: 20%; top: 70%; animation-delay: -30s, -6s; }
+  .bubble:nth-child(5) { width: 105px; height: 105px; left: 80%; top: 50%; animation-delay: -40s, -8s; }
+  .bubble:nth-child(6) { width: 100px; height: 100px; left: 40%; top: 30%; animation-delay: -50s, -10s; }
+  .bubble:nth-child(7) { width: 90px; height: 90px; left: 65%; top: 75%; animation-delay: -15s, -3s; }
+  .bubble:nth-child(8) { width: 80px; height: 80px; left: 28%; top: 45%; animation-delay: -25s, -7s; }
 
   /* CONTENU CENTRAL */
   .content {
@@ -80,58 +105,74 @@
   }
 
   h1 {
-    font-size: 48px;
-    font-weight: 700;
+    font-size: 56px;
+    font-weight: 800;
     margin-bottom: 12px;
-    letter-spacing: -1px;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, #fff 0%, #888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .subtitle {
     font-size: 18px;
-    color: #888;
+    color: #666;
     margin-bottom: 50px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
   }
 
   /* BOUTONS */
   .btn-group {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
     width: 100%;
-    max-width: 320px;
+    max-width: 340px;
     margin: 0 auto;
   }
 
   .btn {
     width: 100%;
-    padding: 16px;
-    background: #fff;
+    padding: 18px;
+    background: linear-gradient(135deg, #fff, #e0e0e0);
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     color: #000;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
+    box-shadow: 0 4px 20px rgba(255,255,255,0.1);
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(255,255,255,0.2);
   }
 
   .btn:active {
     transform: scale(0.96);
-    opacity: 0.9;
   }
 
   .btn-back {
-    background: transparent;
-    border: 1px solid #333;
+    background: linear-gradient(135deg, #FF375F, #FF6482);
+    border: none;
     color: #fff;
+    box-shadow: 0 4px 20px rgba(255,55,95,0.3);
+  }
+
+  .btn-back:hover {
+    box-shadow: 0 6px 30px rgba(255,55,95,0.5);
   }
 
   .btn-back:active {
-    background: #1a1a1a;
+    background: linear-gradient(135deg, #E02E4F, #E05872);
   }
 
   .google-icon {
@@ -140,27 +181,28 @@
   }
 
   @media (max-width: 768px) {
-    h1 { font-size: 36px; }
+    h1 { font-size: 40px; }
     .subtitle { font-size: 16px; }
-    .bubble { font-size: 11px; }
+    .bubble { font-size: 10px; padding: 8px; }
   }
 </style>
 </head>
 <body>
 
 <div class="bubbles">
-  <div class="bubble">AurX<br>Assistant</div>
-  <div class="bubble">Apprendre</div>
-  <div class="bubble">Coder</div>
-  <div class="bubble">Créer</div>
-  <div class="bubble">Préparer<br>le futur</div>
-  <div class="bubble">Analyser</div>
-  <div class="bubble">Innover</div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
 </div>
 
 <div class="content">
   <h1>AurX AI</h1>
-  <p class="subtitle">Vous avez été déconnecté</p>
+  <p class="subtitle">Session terminée</p>
   
   <div class="btn-group">
     <button class="btn" id="loginBtn">
@@ -178,13 +220,53 @@
 
 <script>
   const AUTH_URL = 'https://aur-x-backend.vercel.app/api/auth/google';
+  
+  // Mots qui tournent dans les bulles
+  const words = [
+    'AurX AI', 'Apprendre', 'Coder', 'Créer', 'Innover',
+    'Analyser', 'Générer', 'Résoudre', 'Concevoir', 'Explorer',
+    'Préparer le futur', 'Automatiser', 'Optimiser', 'Développer',
+    'Architecte IA', 'Neural Net', 'Machine Learning', 'Data Science',
+    'Python', 'JavaScript', 'React', 'Node.js', 'Vision',
+    'Assistant', 'Productivité', 'Créativité', 'Performance',
+    'Scalable', 'Cloud', 'API', 'Backend', 'Frontend',
+    'RDC Tech', 'FIRMINX', 'Future', 'Next Gen', 'Smart',
+    'Quantum', 'Web3', 'Blockchain', 'Secure', 'Fast'
+  ];
 
+  // Change les mots des bulles
+  const bubbles = document.querySelectorAll('.bubble');
+  
+  function changeWords() {
+    bubbles.forEach(bubble => {
+      bubble.style.opacity = '0';
+      setTimeout(() => {
+        const randomWord = words[Math.floor(Math.random() * words.length)];
+        bubble.innerHTML = randomWord.replace(' ', '<br>');
+        bubble.style.opacity = '0.8';
+      }, 600);
+    });
+  }
+
+  // Init mots
+  bubbles.forEach(bubble => {
+    const randomWord = words[Math.floor(Math.random() * words.length)];
+    bubble.innerHTML = randomWord.replace(' ', '<br>');
+  });
+
+  // Change toutes les 5 secondes - vitesse pub TV
+  setInterval(changeWords, 5000);
+
+  // Boutons
   document.getElementById('loginBtn').addEventListener('click', () => {
     window.location.href = AUTH_URL;
   });
 
   document.getElementById('backBtn').addEventListener('click', () => {
     window.close();
+    setTimeout(() => {
+      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;color:#666;font-size:18px;font-family:-apple-system,sans-serif;">Tu peux fermer cet onglet</div>';
+    }, 100);
   });
 </script>
 
