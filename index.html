@@ -2,21 +2,21 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>AurX AI - Déconnecté</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
   
-    * {
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
   body {
-    background: #000;
+    background: radial-gradient(circle at center, #0a0a12 0%, #020205 100%);
     color: #fff;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     overflow: hidden;
     height: 100vh;
     display: flex;
@@ -25,7 +25,7 @@
     justify-content: center;
   }
 
-  /* AURORA BACKGROUND */
+  /* AURORA GLOW DYNAMIQUE */
   .aurora {
     position: absolute;
     inset: 0;
@@ -37,34 +37,33 @@
   .aurora::after {
     content: '';
     position: absolute;
-    width: 600px;
-    height: 600px;
+    width: 500px;
+    height: 500px;
     border-radius: 50%;
-    filter: blur(100px);
-    opacity: 0.3;
-    animation: auroraMove 20s infinite ease-in-out;
+    filter: blur(140px);
+    opacity: 0.18;
+    animation: auroraMove 16s infinite ease-in-out;
   }
 
   .aurora::before {
-    background: radial-gradient(circle, #0A84FF, transparent 70%);
-    top: -200px;
-    left: -100px;
+    background: #0A84FF;
+    top: -150px;
+    left: -50px;
   }
 
   .aurora::after {
-    background: radial-gradient(circle, #BF5AF2, transparent 70%);
-    bottom: -200px;
-    right: -100px;
-    animation-delay: -10s;
+    background: #BF5AF2;
+    bottom: -150px;
+    right: -50px;
+    animation-delay: -8s;
   }
 
   @keyframes auroraMove {
     0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(100px, -50px) scale(1.1); }
-    66% { transform: translate(-80px, 60px) scale(0.9); }
+    50% { transform: translate(60px, -30px) scale(1.15); }
   }
 
-  /* PARTICULES */
+  /* FLUX DE PARTICULES ACCÉLÉRÉ */
   .particles {
     position: absolute;
     inset: 0;
@@ -74,28 +73,27 @@
 
   .particle {
     position: absolute;
-    width: 2px;
-    height: 2px;
-    background: rgba(255,255,255,0.5);
+    width: 1.5px;
+    height: 1.5px;
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    animation: drift 25s infinite linear;
+    animation: drift 20s infinite linear;
   }
 
   @keyframes drift {
-    0% { transform: translateY(0) translateX(0); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+    0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(-10vh) translateX(50px); opacity: 0; }
   }
 
-  .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
-  .particle:nth-child(2) { left: 25%; animation-delay: -3s; }
-  .particle:nth-child(3) { left: 40%; animation-delay: -6s; }
-  .particle:nth-child(4) { left: 55%; animation-delay: -9s; }
-  .particle:nth-child(5) { left: 70%; animation-delay: -12s; }
-  .particle:nth-child(6) { left: 85%; animation-delay: -15s; }
+  .particle:nth-child(1) { left: 15%; animation-delay: 0s; animation-duration: 18s; }
+  .particle:nth-child(2) { left: 35%; animation-delay: -4s; animation-duration: 22s; }
+  .particle:nth-child(3) { left: 55%; animation-delay: -2s; animation-duration: 16s; }
+  .particle:nth-child(4) { left: 75%; animation-delay: -7s; animation-duration: 24s; }
+  .particle:nth-child(5) { left: 90%; animation-delay: -5s; animation-duration: 20s; }
 
-  /* BULLES GLASS */
+  /* CELLULES HOLOGRAPHIQUES FLOUTÉES */
   .bubbles {
     position: absolute;
     inset: 0;
@@ -105,140 +103,157 @@
 
   .bubble {
     position: absolute;
-    border-radius: 24px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 11px;
-    font-weight: 600;
-    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.4);
     text-align: center;
-    padding: 16px;
-    animation: floatGlass 30s infinite ease-in-out;
-    opacity: 0.7;
-    background: rgba(255,255,255,0.03);
-    backdrop-filter: blur(40px);
-    border: 1px solid rgba(255,255,255,0.1);
-    letter-spacing: 0.5px;
-    transition: opacity 1s ease;
+    padding: 10px;
+    animation: floatGlass 20s infinite ease-in-out;
+    background: linear-gradient(135deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.03) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(255,255,255,0.12);
+    letter-spacing: 1px;
+    transition: opacity 0.6s ease, transform 0.6s ease, color 0.3s;
     will-change: transform;
   }
 
-  @keyframes floatGlass {
-    0%, 100% { 
-      transform: translate(0, 0) rotate(0deg); 
-    }
-    50% { 
-      transform: translate(60px, -50px) rotate(5deg); 
-    }
+  .bubble:hover {
+    color: #0A84FF;
+    border-color: rgba(10, 132, 255, 0.3);
   }
 
-  .bubble:nth-child(1) { width: 120px; height: 60px; left: 15%; top: 25%; animation-delay: 0s; }
-  .bubble:nth-child(2) { width: 90px; height: 50px; left: 75%; top: 20%; animation-delay: -5s; }
-  .bubble:nth-child(3) { width: 110px; height: 55px; left: 55%; top: 65%; animation-delay: -10s; }
-  .bubble:nth-child(4) { width: 85px; height: 45px; left: 22%; top: 68%; animation-delay: -15s; }
-  .bubble:nth-child(5) { width: 100px; height: 52px; left: 78%; top: 50%; animation-delay: -20s; }
-  .bubble:nth-child(6) { width: 95px; height: 48px; left: 45%; top: 32%; animation-delay: -25s; }
+  @keyframes floatGlass {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(30px, -20px) rotate(2deg); }
+  }
+
+  .bubble:nth-child(1) { width: 110px; height: 48px; left: 10%; top: 20%; animation-delay: 0s; }
+  .bubble:nth-child(2) { width: 100px; height: 45px; left: 80%; top: 15%; animation-delay: -3s; }
+  .bubble:nth-child(3) { width: 115px; height: 48px; left: 50%; top: 75%; animation-delay: -6s; }
+  .bubble:nth-child(4) { width: 90px; height: 42px; left: 15%; top: 78%; animation-delay: -9s; }
+  .bubble:nth-child(5) { width: 105px; height: 46px; left: 82%; top: 50%; animation-delay: -12s; }
+  .bubble:nth-child(6) { width: 95px; height: 44px; left: 45%; top: 25%; animation-delay: -15s; }
 
   /* CONTENU CENTRAL */
   .content {
     position: relative;
     z-index: 1;
     text-align: center;
-    padding: 40px 20px;
-    max-width: 600px;
+    padding: 30px;
+    width: 100%;
+    max-width: 380px;
   }
 
+  /* LOGO TECH GLOW */
   .logo {
-    width: 80px;
-    height: 80px;
+    width: 68px;
+    height: 68px;
     margin: 0 auto 24px;
-    background: linear-gradient(135deg, #0A84FF, #BF5AF2);
+    background: #000;
+    border: 2px solid transparent;
+    background-image: linear-gradient(#000, #000), linear-gradient(135deg, #0A84FF, #BF5AF2);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 36px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
     font-weight: 700;
-    box-shadow: 0 0 60px rgba(10,132,255,0.4);
-    animation: logoFloat 4s ease-in-out infinite;
+    letter-spacing: -0.5px;
+    color: #fff;
+    box-shadow: 0 0 30px rgba(10,132,255,0.2), inset 0 0 15px rgba(191,90,242,0.2);
+    animation: logoFloat 5s ease-in-out infinite;
   }
 
   @keyframes logoFloat {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-6px); }
   }
 
   h1 {
-    font-size: 52px;
-    font-weight: 600;
-    margin-bottom: 12px;
-    letter-spacing: -1.5px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -1px;
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255,255,255,0.6) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .subtitle {
-    font-size: 15px;
-    color: #888;
-    margin-bottom: 50px;
-    font-weight: 400;
-    letter-spacing: 0.5px;
+    font-size: 14px;
+    color: #555566;
+    margin-bottom: 36px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
   }
 
-  /* BOUTONS */
+  /* BOUTONS INTERACTIFS */
   .btn-group {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
     width: 100%;
-    max-width: 340px;
-    margin: 0 auto;
   }
 
   .btn {
     width: 100%;
-    padding: 18px;
-    border-radius: 14px;
-    font-size: 15px;
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
   }
 
-  /* BOUTON GOOGLE BLANC */
+  /* BOUTON GOOGLE PREMIUM */
   .btn-google {
     background: #fff;
     border: none;
-    color: #000;
-    box-shadow: 0 8px 30px rgba(255,255,255,0.15);
+    color: #050508;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
   }
 
   .btn-google:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(255,255,255,0.25);
+    background: #ffffff;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.25), 0 4px 20px rgba(0, 0, 0, 0.2);
   }
 
   .btn-google:active {
     transform: scale(0.98);
-    background: #f0f0f0;
   }
 
-  /* BOUTON RETOUR GLASS */
+  /* BOUTON RETOUR NEON OUTLINE */
   .btn-back {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    color: #fff;
-    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   .btn-back:hover {
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(255,255,255,0.3);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #0A84FF;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(10, 132, 255, 0.15);
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
   }
 
   .btn-back:active {
@@ -246,14 +261,14 @@
   }
 
   .google-icon {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
 
-  @media (max-width: 768px) {
-    h1 { font-size: 42px; }
-    .subtitle { font-size: 14px; }
-    .bubble { font-size: 9px; padding: 12px; }
+  @media (max-width: 480px) {
+    h1 { font-size: 34px; }
+    .subtitle { font-size: 12px; margin-bottom: 30px; }
+    .content { padding: 20px; }
   }
 </style>
 </head>
@@ -262,7 +277,6 @@
 <div class="aurora"></div>
 
 <div class="particles">
-  <div class="particle"></div>
   <div class="particle"></div>
   <div class="particle"></div>
   <div class="particle"></div>
@@ -282,7 +296,7 @@
 <div class="content">
   <div class="logo">AX</div>
   <h1>AurX AI</h1>
-  <p class="subtitle">Vous êtes déconnecté</p>
+  <p class="subtitle">Session déconnectée</p>
   
   <div class="btn-group">
     <button class="btn btn-google" id="loginBtn">
@@ -294,7 +308,7 @@
       </svg>
       Continuer avec Google
     </button>
-    <button class="btn btn-back" id="backBtn">Retour à AurX</button>
+    <button class="btn btn-back" id="backBtn">Retour à l'accueil</button>
   </div>
 </div>
 
@@ -310,32 +324,29 @@
     'VISION', 'VOICE', 'CHAT', 'GEN AI', 'LLM',
     'FIRMINX', 'RDC', 'KINSHASA', 'AFRICA', 'NEXT',
     'CLOUD', 'EDGE', 'API', 'SECURE', 'FAST',
-    'LEARN', 'CREATE', 'THINK', 'SOLVE', 'SHIP',
-    'TYPESCRIPT', 'DOCKER', 'LINUX', 'GIT', 'VSCODE',
-    'TENSORFLOW', 'PYTORCH', 'OPENCV', 'CUDA', 'GPU',
-    'BLOCKCHAIN', 'WEB3', 'CRYPTO', 'TOKEN', 'SMART',
-    'SERVERLESS', 'K8S', 'DEVOPS', 'CI/CD', 'AGILE',
-    'SAAS', 'API', 'REST', 'GRAPHQL', 'SOCKET',
-    'MONGODB', 'POSTGRES', 'REDIS', 'FIREBASE', 'SUPABASE'
+    'LEARN', 'CREATE', 'THINK', 'SOLVE', 'SHIP'
   ];
 
   const bubbles = document.querySelectorAll('.bubble');
   
+  function initWords() {
+    bubbles.forEach(bubble => {
+      bubble.textContent = words[Math.floor(Math.random() * words.length)];
+    });
+  }
+
   function changeWords() {
     bubbles.forEach(bubble => {
       bubble.style.opacity = '0';
       setTimeout(() => {
         bubble.textContent = words[Math.floor(Math.random() * words.length)];
         bubble.style.opacity = '0.7';
-      }, 500);
+      }, 600);
     });
   }
 
-  bubbles.forEach(bubble => {
-    bubble.textContent = words[Math.floor(Math.random() * words.length)];
-  });
-
-  setInterval(changeWords, 4000);
+  initWords();
+  setInterval(changeWords, 5000);
 
   document.getElementById('loginBtn').addEventListener('click', () => {
     window.location.href = AUTH_URL;
